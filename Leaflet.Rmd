@@ -1,0 +1,54 @@
+---
+title: "Leaflet"
+author: "Willem Hogewoning"
+date: "4-4-2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Peer-graded Assignment: R Markdown and Leaflet
+
+Create a web page using R Markdown that features a map created with Leaflet. 
+
+Host your webpage on either GitHub Pages, RPubs, or NeoCities.
+
+Your webpage must contain the date that you created the document, and it must contain a map created with Leaflet. We would love to see you show off your creativity! 
+
+Create empthy map:
+```{r, eval=FALSE}
+library(leaflet)
+my_map <- leaflet() %>% 
+  addTiles()
+my_map
+```
+
+## at list of ship wrecks
+(Sourse = https://wrecks.nauticalcharts.noaa.gov/downloads/AWOIS_Wrecks.xls)
+
+USS MILWAUKEE	40,8123	-124,196833
+USS NEW JERSEY	35,03218	-75,290439
+USS PC 463	25,947042	-82,874836
+USS VIRGINA	35,01929	-75,285944
+
+```{r, eval=FALSE}
+
+Ships <- data.frame(
+  lat = c(40.8123, 35.03218, 25.947042, 35.01929),
+  lng = c(-124.196833, -75.290439, -82.874836, -75.285944))
+
+Names <- c("USS MILWAUKEE", "USS NEW JERSEY", "USS PC", "USS VIRGINA")
+  
+my_map <- my_map %>%
+  addMarkers(lat=Ships$lat, lng = Ships$lng, 
+             popup=Names, 
+  clusterOptions = markerClusterOptions() )
+my_map
+```
+
+
+
+
+```
